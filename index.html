@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Miroslav Stašek, koncepty dokumentace</title>
+<meta name="description" content="Papírování zautomatizuju, odborná práce zůstane vám. Koncepty dokumentace z vašich podkladů pro hydrogeology a další autorizované obory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Papír na pracovním stole: jeden sloupec textu, žlutá jen jako fix pod klíčovými slovy */
+  :root {
+    --paper: #F7F4EE;
+    --surface: #FFFDF9;
+    --ink: #1E2329;
+    --graphite: #5E6670;
+    --line: #E3DDD2;
+    --band: #EFEAE1;
+    --grid: rgba(30, 35, 41, 0.05);
+    --marker: #F5D565;
+    --marker-ink: #1E2329;
+    --btn-bg: #1E2329;
+    --btn-fg: #F7F4EE;
+    --font: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --band: #1E2126;
+      --paper: #191C20; --surface: #20242A; --ink: #ECE8E1; --graphite: #A3A9B1;
+      --line: #33383F; --grid: rgba(236, 232, 225, 0.04); --marker: rgba(245, 213, 101, 0.38);
+      --marker-ink: #ECE8E1; --btn-bg: #ECE8E1; --btn-fg: #191C20; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --band: #1E2126;
+    --paper: #191C20; --surface: #20242A; --ink: #ECE8E1; --graphite: #A3A9B1;
+    --line: #33383F; --grid: rgba(236, 232, 225, 0.04); --marker: rgba(245, 213, 101, 0.38);
+    --marker-ink: #ECE8E1; --btn-bg: #ECE8E1; --btn-fg: #191C20; color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, p, ul { margin: 0; }
+  h1, h2 { text-wrap: balance; }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .hl {
+    background: linear-gradient(180deg, transparent 58%, var(--marker) 58%, var(--marker) 92%, transparent 92%);
+    color: var(--marker-ink);
+    padding: 0 3px;
+    font-weight: 600;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
+  }
+
+  .top { border-bottom: 1px solid var(--line); }
+  .top .wrap {
+    padding-block: 16px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 18px;
+  }
+  .top-name { font-weight: 700; letter-spacing: -0.01em; }
+  .top-contacts { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; font-weight: 500; }
+  .top-contacts a { text-decoration: none; border-bottom: 1px solid var(--line); }
+  .top-contacts a:hover { border-bottom-color: var(--ink); }
+
+  .hero {
+    border-bottom: 1px solid var(--line);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .hero .wrap { padding-block: 72px 60px; display: flex; flex-direction: column; gap: 32px; }
+  h1 { font-size: 36px; line-height: 1.25; letter-spacing: -0.02em; font-weight: 700; }
+  .intro { display: grid; grid-template-columns: 140px 1fr; gap: 28px; align-items: start; }
+  .intro > div { min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+  .photo {
+    width: 140px; aspect-ratio: 4 / 5; max-width: 100%;
+    background: var(--surface); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--graphite); font-size: 13px; text-align: center; padding: 12px;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; padding: 11px 20px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    background: var(--btn-bg); color: var(--btn-fg); border: 1px solid var(--btn-bg);
+  }
+  .btn:hover { opacity: 0.9; }
+  .btn-outline { background: transparent; color: var(--ink); border-color: var(--ink); }
+
+  section { border-bottom: 1px solid var(--line); }
+  section.alt { background: var(--band); }
+  section > .wrap { padding-block: 56px; display: flex; flex-direction: column; gap: 20px; }
+  h2 { font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; font-weight: 700; }
+  .muted { color: var(--graphite); }
+
+  .steps { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: s; }
+  .steps li {
+    counter-increment: s;
+    display: grid; grid-template-columns: 36px 1fr; gap: 16px;
+    background: var(--surface); border: 1px solid var(--line); padding: 18px 22px;
+  }
+  .steps li::before { content: counter(s) "."; font-weight: 700; font-size: 18px; color: var(--graphite); }
+  .steps strong { display: block; margin-bottom: 2px; }
+  .steps p { font-size: 15px; color: var(--graphite); }
+
+  .note { border-left: 3px solid var(--ink); padding: 4px 0 4px 20px; font-size: 16px; }
+
+  .outputs { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; font-size: 15px; }
+  .outputs li { display: flex; gap: 10px; min-width: 0; }
+  .outputs li::before { content: "·"; color: var(--graphite); font-weight: 700; }
+  .meta { font-size: 14px; color: var(--graphite); }
+
+  .faq { display: flex; flex-direction: column; gap: 14px; }
+  .faq div { background: var(--surface); border: 1px solid var(--line); padding: 20px 22px; display: flex; flex-direction: column; gap: 6px; }
+  .faq h3 { font-size: 17px; }
+  .faq p { font-size: 15px; color: var(--graphite); }
+
+  .cta { background: var(--surface); border: 1px solid var(--line); padding: 36px 32px; display: flex; flex-direction: column; gap: 18px; }
+  .cta h2 { font-size: 26px; }
+  .direct { display: flex; flex-wrap: wrap; gap: 10px 28px; font-weight: 600; }
+  .direct a { text-decoration: none; border-bottom: 2px solid var(--line); padding-bottom: 2px; }
+  .direct a:hover { border-bottom-color: var(--ink); }
+  .final { border-bottom: none; }
+
+  /* Decentní zaoblení */
+  .photo, .steps li, .faq div, .cta { border-radius: 12px; }
+  .btn { border-radius: 8px; }
+  .note { border-radius: 0 8px 8px 0; }
+
+  /* Náčrty tužkou */
+  .sketch { color: var(--graphite); display: block; max-width: 100%; height: auto; }
+  .sketch .pen { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; filter: url(#pencil); }
+  .sketch .thin { stroke-width: 1; opacity: 0.75; }
+  .sketch .mark { fill: var(--marker); stroke: none; opacity: 0.85; }
+  .sketch .paper { fill: var(--surface); }
+  .sketch text { fill: currentColor; font: 500 11px var(--font); }
+  .hero-top { display: grid; grid-template-columns: 1fr 240px; gap: 32px; align-items: center; }
+  .hero-top > div { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .lead { font-size: 19px; color: var(--graphite); }
+  .steps li { grid-template-columns: 36px 1fr 72px; align-items: center; }
+  .steps li .sketch { width: 72px; }
+  .hydro { display: grid; grid-template-columns: 1fr 200px; gap: 32px; align-items: start; }
+  .hydro > div { min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+
+  footer .wrap { padding-block: 32px 48px; font-size: 14px; color: var(--graphite); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 27px; }
+    .hero .wrap { padding-block: 44px 40px; }
+    .intro { grid-template-columns: 1fr; gap: 20px; }
+    .photo { width: 120px; }
+    .outputs { grid-template-columns: 1fr; }
+    .hero-top { grid-template-columns: 1fr; gap: 20px; }
+    .hero-top .sketch { width: 180px; }
+    .hydro { grid-template-columns: 1fr; }
+    .hydro .sketch { width: 170px; }
+    .steps li { grid-template-columns: 28px 1fr 56px; gap: 12px; padding: 16px; }
+    .steps li .sketch { width: 56px; }
+    .cta { padding: 24px 20px; }
+    section > .wrap { padding-block: 44px; }
+  }
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="pencil" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/>
+  </filter>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <div class="top-name">Miroslav Stašek</div>
+    <div class="top-contacts">
+      <a href="tel:+420775605572">+420 775 605 572</a>
+      <a href="mailto:m.stasek@gmail.com">m.stasek@gmail.com</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <div>
+          <h1>Papírování <span class="hl">zautomatizuju</span>. Odborná práce zůstane vám.</h1>
+          <p class="lead">Rutinní část dokumentace k vašim zakázkám převezmu já. Vám zůstane kontrola, odborné závěry a víc času na práci v terénu.</p>
+        </div>
+        <svg class="sketch" viewBox="0 0 240 210" aria-hidden="true">
+          <path class="pen paper" d="M58 18 L196 10 L206 186 L66 196 Z"/>
+          <path class="pen thin" d="M48 26 L58 18 M56 204 L66 196 M48 26 L56 204"/>
+          <rect class="mark" x="82" y="58" width="78" height="9" transform="rotate(-3 120 62)"/>
+          <rect class="mark" x="86" y="118" width="52" height="9" transform="rotate(-3 112 122)"/>
+          <path class="pen" d="M82 38 L150 34"/>
+          <path class="pen thin" d="M82 64 L178 59 M83 80 L170 76 M84 96 L180 91 M85 124 L176 119 M86 140 L160 136 M87 156 L178 151"/>
+          <path class="pen" d="M130 176 C138 166, 142 184, 150 172 S162 168, 170 174"/>
+          <path class="pen" d="M150 198 L222 120 L232 129 L160 207 L146 212 Z M222 120 L232 129 M150 198 L160 207"/>
+        </svg>
+      </div>
+      <div class="intro">
+        <div class="photo" aria-label="Místo pro fotku">Fotka</div>
+        <div>
+          <p>Pracuji v IT a pomáhám malým odborným kancelářím zbavit se rutinního papírování. Z vašich podkladů a měření připravím čistý koncept, abyste netrávili večery přepisováním pořád stejných tabulek a textů.</p>
+          <div class="actions">
+            <a href="tel:+420775605572" class="btn">Zavolat: +420 775 605 572</a>
+            <a href="mailto:m.stasek@gmail.com" class="btn btn-outline">Napsat e-mail</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>Jak to funguje</h2>
+      <ol class="steps">
+        <li><div><strong>Předáte mi podklady</strong><p>Data ze zkoušek, terénní zápisky a základní údaje k zakázce. Způsob předání domluvíme podle toho, co vám vyhovuje.</p></div>
+          <svg class="sketch" viewBox="0 0 64 48" aria-hidden="true"><path class="pen" d="M6 14 L24 13 L28 8 L58 8 L59 42 L7 43 Z M6 19 L58 17"/></svg></li>
+        <li><div><strong>Do 3 pracovních dnů dostanete koncept ve Wordu</strong><p>Naformátovaný text i přílohy. Všechna nejistá místa jsou v dokumentu žlutě zvýrazněná.</p></div>
+          <svg class="sketch" viewBox="0 0 64 48" aria-hidden="true"><path class="pen paper" d="M15 3 L49 2 L50 45 L16 46 Z"/><rect class="mark" x="20" y="19" width="22" height="5"/><path class="pen thin" d="M21 11 L43 10 M21 22 L44 21 M21 30 L41 29 M21 38 L37 37"/></svg></li>
+        <li><div><strong>Zkontrolujete, doplníte a podepíšete</strong><p>Projdete zvýrazněná místa, rozhodnete odborné závěry a dokument orazítkujete.</p></div>
+          <svg class="sketch" viewBox="0 0 64 48" aria-hidden="true"><path class="pen" d="M6 30 C14 10, 20 38, 27 24 S38 18, 42 28 S52 24, 58 21"/><path class="pen thin" d="M4 38 L60 37"/></svg></li>
+      </ol>
+      <p class="note">Všechno, co z podkladů nevím jistě (chybějící údaj, nejasná hodnota nebo odborný závěr k rozhodnutí), vám v dokumentu <span class="hl">žlutě označím</span>. Projdete jen tato místa a nemusíte kontrolovat celý dokument řádek po řádku. Než koncept podepíšete, nesmí v něm žádné žluté místo zůstat.</p>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>Pro koho to je</h2>
+      <p>Pro odborníky, kteří pořád dokola vyrábějí dokumenty se stejnou strukturou a mění se hlavně data. Dokumentace podléhá autorizaci a vyžaduje pečlivost, ale samotné sepisování zabírá hodně času.</p>
+      <p class="muted">Typicky hydrogeologie, statika, geodézie nebo energetické štítky (PENB). U každého oboru záleží na konkrétních zakázkách.</p>
+    </div>
+  </section>
+
+  <section id="hydrogeologie">
+    <div class="wrap">
+      <h2>Hydrogeologie</h2>
+      <div class="hydro">
+      <div>
+      <p>Pro <strong>vrtané studny</strong> vám připravím:</p>
+      <ul class="outputs">
+        <li>Hydrogeologické vyjádření (HGV)</li>
+        <li>Projektová dokumentace (průvodní list, souhrnná technická zpráva)</li>
+        <li>Katastrální mapa a situace</li>
+        <li>Situace širších vztahů</li>
+        <li>Koordinační situace</li>
+        <li>Profil vrtu a studny</li>
+        <li>Uložení vodovodu a kabelu</li>
+        <li>Geologická mapa</li>
+        <li>Vyhodnocení čerpací a stoupací zkoušky s grafy</li>
+      </ul>
+      <p>Ode mě potřebujete jen technický list vrtu, data z čerpací zkoušky a číslo parcely s katastrálním územím.</p>
+      <p class="meta">Výstupy ve Wordu (.docx) a PDF.</p>
+      </div>
+      <svg class="sketch" viewBox="0 0 200 260" aria-hidden="true">
+        <path class="pen" d="M8 40 C40 36, 70 44, 100 40 S160 36, 192 41"/>
+        <path class="pen thin" d="M20 40 L16 32 M44 39 L41 31 M150 39 L153 31 M176 40 L180 32"/>
+        <path class="pen thin" d="M8 104 C50 98, 70 110, 120 102 S170 98, 192 106"/>
+        <path class="pen thin" d="M8 172 C40 178, 90 166, 130 174 S180 168, 192 172"/>
+        <path class="pen thin" d="M24 62 h1 M48 74 h1 M30 88 h1 M140 60 h1 M164 82 h1 M150 92 h1 M34 120 h1 M168 66 h1"/>
+        <path class="pen thin" d="M20 126 l12 0 M40 146 l12 0 M24 160 l12 0 M140 124 l12 0 M160 142 l12 0 M146 158 l12 0"/>
+        <path class="pen thin" d="M22 196 l8 8 M30 196 l-8 8 M48 222 l8 8 M56 222 l-8 8 M150 200 l8 8 M158 200 l-8 8 M164 230 l8 8 M172 230 l-8 8"/>
+        <path class="pen paper" d="M90 30 L110 30 L110 246 L90 246 Z"/>
+        <path class="pen thin" d="M90 190 l20 0 M90 200 l20 0 M90 210 l20 0 M90 220 l20 0 M90 230 l20 0"/>
+        <path class="pen" d="M112 120 L126 120 L119 130 Z"/>
+        <path class="pen thin" d="M114 135 L124 135"/>
+        <text x="130" y="129">HPV</text>
+      </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>Další obory</h2>
+      <p>Děláte statiku, geodézii, PENB nebo jinou opakovanou dokumentaci? Ozvěte se, rád se podívám, jestli by to u vás fungovalo.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Časté otázky</h2>
+      <div class="faq">
+        <div>
+          <h3>Kdo za dokument ručí?</h3>
+          <p>Za odborné závěry a podpis ručíte vy, stejně jako dnes. Já ručím za svou část: koncept odpovídá vašim podkladům, nic nejistého v něm nezůstane bez žlutého označení a chyby, které najdete, opravím bez příplatku. <span class="hl">Razítka ani podpisy do dokumentů nikdy nevkládám.</span></p>
+        </div>
+        <div>
+          <h3>Co se děje s mými daty?</h3>
+          <p>Nikomu je nepředávám a konkurenci je neukazuji. Slouží jen pro vaši zakázku.</p>
+        </div>
+        <div>
+          <h3>Musím se něco učit nebo instalovat?</h3>
+          <p>Ne. Nic se neinstaluje a koncept dostanete v běžném Wordu.</p>
+        </div>
+        <div>
+          <h3>Používáte AI?</h3>
+          <p>S rutinou pomáhají nástroje včetně AI. Odborné závěry jsou vždy na vás.</p>
+        </div>
+        <div>
+          <h3>Kolik to stojí?</h3>
+          <p>Cena je za zakázku, domluvíme se podle objemu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final alt">
+    <div class="wrap">
+      <div class="cta">
+        <h2>Zkuste to na hotové zakázce</h2>
+        <p>Pošlete mi podklady k zakázce, kterou už máte odevzdanou. Koncept vám připravím zdarma a porovnáte si ho se svou verzí.</p>
+        <div class="direct">
+          <a href="tel:+420775605572">+420 775 605 572</a>
+          <a href="mailto:m.stasek@gmail.com">m.stasek@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>Miroslav Stašek</strong>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
