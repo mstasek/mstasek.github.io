@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Miroslav Stašek, koncepty dokumentace</title>
-<meta name="description" content="Papírování zautomatizuju, odborná práce zůstane vám. Koncepty dokumentace z vašich podkladů pro hydrogeology a další autorizované obory.">
+<meta name="description" content="Papírování zautomatizuju a zpracování zakázky zkrátím minimálně o polovinu. Koncepty dokumentace z vašich podkladů pro hydrogeology a další autorizované obory.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -144,6 +144,7 @@
   .final { border-bottom: none; }
 
   /* Decentní zaoblení */
+  img.photo { padding: 0; object-fit: cover; height: auto; display: block; }
   .photo, .steps li, .faq div, .cta { border-radius: 12px; }
   .btn { border-radius: 8px; }
   .note { border-radius: 0 8px 8px 0; }
@@ -157,7 +158,9 @@
   .sketch text { fill: currentColor; font: 500 11px var(--font); }
   .hero-top { display: grid; grid-template-columns: 1fr 240px; gap: 32px; align-items: center; }
   .hero-top > div { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .claim { font-size: 19px; font-weight: 500; }
   .lead { font-size: 19px; color: var(--graphite); }
+  .lead strong { color: var(--ink); }
   .steps li { grid-template-columns: 36px 1fr 72px; align-items: center; }
   .steps li .sketch { width: 72px; }
   .hydro { display: grid; grid-template-columns: 1fr 200px; gap: 32px; align-items: start; }
@@ -208,7 +211,7 @@
       <div class="hero-top">
         <div>
           <h1>Papírování <span class="hl">zautomatizuju</span>. Odborná práce zůstane vám.</h1>
-          <p class="lead">Rutinní část dokumentace k vašim zakázkám převezmu já. Vám zůstane kontrola, odborné závěry a víc času na práci v terénu.</p>
+          <p class="lead">Rutinní část dokumentace převezmu já a zpracování zakázky vám zkrátím <strong class="hl">minimálně o polovinu</strong>. Vám zůstane kontrola a odborné závěry.</p>
         </div>
         <svg class="sketch" viewBox="0 0 240 210" aria-hidden="true">
           <path class="pen paper" d="M58 18 L196 10 L206 186 L66 196 Z"/>
@@ -222,9 +225,9 @@
         </svg>
       </div>
       <div class="intro">
-        <div class="photo" aria-label="Místo pro fotku">Fotka</div>
+        <img class="photo" src="foto.jpg" width="560" height="700" alt="Miroslav Stašek">
         <div>
-          <p>Pracuji v IT a pomáhám malým odborným kancelářím zbavit se rutinního papírování. Z vašich podkladů a měření připravím čistý koncept, abyste netrávili večery přepisováním pořád stejných tabulek a textů.</p>
+          <p>Pracuji v IT a pomáhám malým odborným kancelářím zbavit se rutinního papírování. Z vašich podkladů a měření připravím čistý koncept, abyste netrávili večery přepisováním opakujících se tabulek a textů.</p>
           <div class="actions">
             <a href="tel:+420775605572" class="btn">Zavolat: +420 775 605 572</a>
             <a href="mailto:m.stasek@gmail.com" class="btn btn-outline">Napsat e-mail</a>
@@ -240,19 +243,19 @@
       <ol class="steps">
         <li><div><strong>Předáte mi podklady</strong><p>Data ze zkoušek, terénní zápisky a základní údaje k zakázce. Způsob předání domluvíme podle toho, co vám vyhovuje.</p></div>
           <svg class="sketch" viewBox="0 0 64 48" aria-hidden="true"><path class="pen" d="M6 14 L24 13 L28 8 L58 8 L59 42 L7 43 Z M6 19 L58 17"/></svg></li>
-        <li><div><strong>Do 3 pracovních dnů dostanete koncept ve Wordu</strong><p>Naformátovaný text i přílohy. Všechna nejistá místa jsou v dokumentu žlutě zvýrazněná.</p></div>
+        <li><div><strong>Do 3 pracovních dnů dostanete koncept ve Wordu</strong><p>Naformátovaný text i přílohy. Všechna nejistá místa jsou v dokumentu zvýrazněná.</p></div>
           <svg class="sketch" viewBox="0 0 64 48" aria-hidden="true"><path class="pen paper" d="M15 3 L49 2 L50 45 L16 46 Z"/><rect class="mark" x="20" y="19" width="22" height="5"/><path class="pen thin" d="M21 11 L43 10 M21 22 L44 21 M21 30 L41 29 M21 38 L37 37"/></svg></li>
         <li><div><strong>Zkontrolujete, doplníte a podepíšete</strong><p>Projdete zvýrazněná místa, rozhodnete odborné závěry a dokument orazítkujete.</p></div>
           <svg class="sketch" viewBox="0 0 64 48" aria-hidden="true"><path class="pen" d="M6 30 C14 10, 20 38, 27 24 S38 18, 42 28 S52 24, 58 21"/><path class="pen thin" d="M4 38 L60 37"/></svg></li>
       </ol>
-      <p class="note">Všechno, co z podkladů nevím jistě (chybějící údaj, nejasná hodnota nebo odborný závěr k rozhodnutí), vám v dokumentu <span class="hl">žlutě označím</span>. Projdete jen tato místa a nemusíte kontrolovat celý dokument řádek po řádku. Než koncept podepíšete, nesmí v něm žádné žluté místo zůstat.</p>
+      <p class="note">Všechno, co z podkladů nevím jistě (chybějící údaj, nejasná hodnota nebo odborný závěr k rozhodnutí), vám v dokumentu <span class="hl">označím</span>. Projdete jen tato místa a nemusíte kontrolovat celý dokument řádek po řádku. Než koncept podepíšete, nesmí v něm žádné žluté místo zůstat.</p>
     </div>
   </section>
 
   <section class="alt">
     <div class="wrap">
       <h2>Pro koho to je</h2>
-      <p>Pro odborníky, kteří pořád dokola vyrábějí dokumenty se stejnou strukturou a mění se hlavně data. Dokumentace podléhá autorizaci a vyžaduje pečlivost, ale samotné sepisování zabírá hodně času.</p>
+      <p>Pro odborníky, kteří pořád dokola vyrábějí dokumenty se stejnou strukturou a mění se hlavně data. Dokumentace podléhá autorizaci a vyžaduje pečlivost, ale samotné sepisování zabírá hodně času. Právě tuhle část pomůžu zásadně zefektivnit.</p>
       <p class="muted">Typicky hydrogeologie, statika, geodézie nebo energetické štítky (PENB). U každého oboru záleží na konkrétních zakázkách.</p>
     </div>
   </section>
@@ -275,7 +278,6 @@
         <li>Vyhodnocení čerpací a stoupací zkoušky s grafy</li>
       </ul>
       <p>Ode mě potřebujete jen technický list vrtu, data z čerpací zkoušky a číslo parcely s katastrálním územím.</p>
-      <p class="meta">Výstupy ve Wordu (.docx) a PDF.</p>
       </div>
       <svg class="sketch" viewBox="0 0 200 260" aria-hidden="true">
         <path class="pen" d="M8 40 C40 36, 70 44, 100 40 S160 36, 192 41"/>
@@ -334,7 +336,7 @@
     <div class="wrap">
       <div class="cta">
         <h2>Zkuste to na hotové zakázce</h2>
-        <p>Pošlete mi podklady k zakázce, kterou už máte odevzdanou. Koncept vám připravím zdarma a porovnáte si ho se svou verzí.</p>
+        <p>Pošlete mi podklady k zakázce, kterou už máte odevzdanou. Koncept vám připravím zdarma a porovnáte si ho se svou verzí, i s časem, který vám tehdy zabrala.</p>
         <div class="direct">
           <a href="tel:+420775605572">+420 775 605 572</a>
           <a href="mailto:m.stasek@gmail.com">m.stasek@gmail.com</a>
